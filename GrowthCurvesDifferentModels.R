@@ -89,6 +89,7 @@ plot_three_model_curves <- function(N0, Gompertz_pars, logistic_pars, vonB_pars,
 ThreeModelsGains <- function(Gompertz_pars, logistic_pars, vonB_pars, power_pars, exp_pars) {
   pars_fig["Nref"]<-pars_fig["Nacc"]
   ratio <- 10^seq(-6, 0, length = 150)
+  ymin <- 1
   
   t1 <- sapply(ratio, heat_fail_id_cont, N0 = pars_fig["N0"], parms = pars_fig)
   t2 <- sapply(ratio, heat_fail_id_agg, N0 = pars_fig["N0"], parms = pars_fig)
@@ -99,56 +100,40 @@ ThreeModelsGains <- function(Gompertz_pars, logistic_pars, vonB_pars, power_pars
   t1 <- sapply(ratio, heat_fail_vonB_id_cont, N0 = pars_fig["N0"], parms = vonB_pars)
   t2 <- sapply(ratio, heat_fail_vonB_id_agg, N0 = pars_fig["N0"], parms = vonB_pars)
   v1 <- t1/t2
-  t1 <- sapply(ratio, heat_fail_power_id_cont, N0 = pars_fig["N0"], parms = power_pars, gamma = -1/3)
-  t2 <- sapply(ratio, heat_fail_power_id_agg, N0 = pars_fig["N0"], parms = power_pars, gamma = -1/3)
-  p1 <- t1/t2
-  t1 <- sapply(ratio, heat_fail_exp_id_cont, N0 = pars_fig["N0"], parms = exp_pars)
-  t2 <- sapply(ratio, heat_fail_exp_id_agg, N0 = pars_fig["N0"], parms = exp_pars)
-  e1 <- t1/t2
+  if(!anyNA(power_pars)) {
+    t1 <- sapply(ratio, heat_fail_power_id_cont, N0 = pars_fig["N0"], parms = power_pars, gamma = -1/3)
+    t2 <- sapply(ratio, heat_fail_power_id_agg, N0 = pars_fig["N0"], parms = power_pars, gamma = -1/3)
+    p1 <- t1/t2
+    ymin <- 0
+  }
+  if(!anyNA(exp_pars)) {
+    t1 <- sapply(ratio, heat_fail_exp_id_cont, N0 = pars_fig["N0"], parms = exp_pars)
+    t2 <- sapply(ratio, heat_fail_exp_id_agg, N0 = pars_fig["N0"], parms = exp_pars)
+    e1 <- t1/t2
+  }
   
-  plot(g1 ~ ratio, type = "l", ylim = c(0, 5.5), log = "x", lwd = 2, 
+  plot(g1 ~ ratio, type = "l", ylim = c(ymin, 5.5), log = "x", lwd = 2, 
        xlab = "",
        ylab = "relative benefit",
        xaxt = "n", yaxt = "n")
   lines(v1 ~ ratio, col = "blue", lwd = 2)
   lines(l1 ~ ratio, col = "red", lwd = 2)
-  lines(e1 ~ ratio, col = "gold", lwd = 2)
-  lines(p1 ~ ratio, col = "grey", lwd = 2)
+  if(!anyNA(power_pars)) lines(p1 ~ ratio, col = "grey", lwd = 2)
+  if(!anyNA(exp_pars)) lines(e1 ~ ratio, col = "gold", lwd = 2)
   axis(1, 10^(-6:0), labels = parse(text=c("10^-6", "10^-5", "10^-4", "10^-3", "10^-2", "10^-1", "1")))
   axis(2, 0:9, labels = 0:9, las = 2)
   mtext(expression(paste("initial frequency of resistance (", italic("R") [0], " / ", italic("N") [0], ")")), 1, 2, cex = 1)
   
-  legend("topright", legend = c("von Bertalanffy", "Gompertzian", "logisitic", "exponential", "superexponential"), 
-         col = c("blue", "black", "red", "gold", "grey"),
-         lwd = 2, bty = "n")
+  if(!anyNA(power_pars) & !anyNA(exp_pars)) {
+    legend("topright", legend = c("von Bertalanffy", "Gompertzian", "logisitic", "exponential", "superexponential"), 
+           col = c("blue", "black", "red", "gold", "grey"),
+           lwd = 2, bty = "n")
+  } else {
+    legend("topright", legend = c("von Bertalanffy", "Gompertzian", "logisitic"), 
+           col = c("blue", "black", "red"),
+           lwd = 2, bty = "n")
+  }
 }
 
-Gompertz_pars <- pars_fig
 
-logistic_pars <- pars_fig
-logistic_pars["K"] <- 6.4e11
-logistic_pars["rho"] <- 2.4e-2
-
-vonB_pars <- pars_fig
-vonB_pars["K"] <- 5e13
-vonB_pars["rho"] <- 90
-
-power_pars <- pars_fig
-power_pars["rho"] <- 4.5e-6
-
-exp_pars <- pars_fig
-exp_pars["rho"] <- 0.0175
-
-pdf("ThreeModelsCurves.pdf", width=3.5, height=4)
-par(mfrow = c(1, 1))
-plot_three_model_curves(pars_fig["N0"], Gompertz_pars, logistic_pars, vonB_pars, power_pars, exp_pars)
-dev.off()
-
-pdf("FiveModels.pdf", width=8, height=6)
-par(mfrow = c(1, 2))
-plot_three_model_curves(pars_fig["N0"], Gompertz_pars, logistic_pars, vonB_pars, power_pars, exp_pars)
-mtext("a", adj=-0.3, line=-0.5, cex = 1.5)
-ThreeModelsGains(Gompertz_pars, logistic_pars, vonB_pars, power_pars, exp_pars)
-mtext("b", adj=-0.3, line=-0.5, cex = 1.5)
-dev.off()
 

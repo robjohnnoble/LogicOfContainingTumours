@@ -796,8 +796,6 @@ fig_ef_alternative<-function(from,to,length,cmax,x,parms=pars_fig,logged=FALSE, 
     objective_txt2 <- expression(paste("contain at ", italic("N")[0], " (", italic("C"[max]), " = ", infinity, ")"))
   } else stop("Unknown objective")
   
-  print(head(a))
-  
   ylim<-c(0, min(1.2 * max(a,b,c,d, na.rm = TRUE), 5000))
   plot(x=r0,y=b,
        type="l",col="grey75",

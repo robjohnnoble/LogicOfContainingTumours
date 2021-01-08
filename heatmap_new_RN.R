@@ -145,7 +145,7 @@ heat_fail_cont_extended_model<-function(N0,ratio,parms,beta=NA,gamma=NA,level=NA
   if(is.na(endpoint)) endpoint <- parms["Nacc"]
   
   parms["Nref"] <- level
-  print(parms)
+  # print(parms)
   
   yini<-init_yini(parms)
   yini["C"]<-0

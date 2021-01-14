@@ -70,7 +70,7 @@ constant_treat<-function(parms=pars_fig,logged=FALSE,c1=0.5,c2=1,c3=2,func=Monro
        xaxt = "n", 
        yaxt = "n",
        xlab = "",
-       ylab = "number of tumor cells",
+       ylab = "number of tumour cells",
        col = "black")
   axis(2, pars_fig["Ncrit"], labels = expression(paste(italic("N" [crit]))), las = 2, col = "red", col.axis = "red")
   axis(2, c(10^10, 10^11, 10^12), labels = parse(text=c("10^10", "10^11", "10^12")), las = 2)
@@ -188,8 +188,8 @@ suppl_constant_treat<-function(parms=pars_fig,logged=FALSE,Cmax,r0,title,func=Mo
   
   mtext("time (days)", 1, 2, cex = x_cex)
   
-  if(fine_axes) mtext("number of tumor cells", 2, 5, cex = x_cex)
-  else mtext("number of tumor cells", 2, 3, cex = x_cex)
+  if(fine_axes) mtext("number of tumour cells", 2, 5, cex = x_cex)
+  else mtext("number of tumour cells", 2, 3, cex = x_cex)
   
   lty_vec <- c("solid")
   col_vec <- c("red")

@@ -51,7 +51,7 @@ plot_three_model_curves <- function(N0, Gompertz_pars, logistic_pars, vonB_pars,
        ylim = c(N0, 1e12), log = "y", 
        lwd=2, 
        xaxt = "n", xlab = "", 
-       yaxt = "n", ylab = "number of tumor cells")
+       yaxt = "n", ylab = "number of tumour cells")
   
   # von B:
   res <- vonB(vonB_pars["rho"], vonB_pars["K"], as.numeric(N0), tv)

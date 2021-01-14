@@ -1,5 +1,5 @@
 #continuous containment at target with cmax = parms["Cmax"]
-#func is the model used, untreat the untreated tumor
+#func is the model used, untreat the untreated tumour
 continuous<-function(target,x,parms,func,untreat,method="lsoda",tau1 = 0, tau2 = 0){
   ##create the untreated growth part to containment level (target)
   #find the index at which we reach containment level (target)
@@ -106,7 +106,7 @@ continuous_treat<-function(x,cmax1,cmax2,parms = pars_fig,logged = FALSE,png=FAL
   plot(x,crit_a,type="l",col="orange",
        log=log, 
        ylim=c(parms["N0"]/2,2e12), 
-       ylab = "number of tumor cells", 
+       ylab = "number of tumour cells", 
        xlab = "", 
        lwd=2, 
        xaxt = "n", 
@@ -175,7 +175,7 @@ continuous_treat<-function(x,cmax1,cmax2,parms = pars_fig,logged = FALSE,png=FAL
        xlim=c(0,600),
        ylim=c(parms["N0"]/2,2e12),
        lwd=2, 
-       ylab = "number of tumor cells", 
+       ylab = "number of tumour cells", 
        xlab = "", 
        xaxt = "n", 
        yaxt = "n")
@@ -274,7 +274,7 @@ continuous_treat_alt<-function(parms=pars_fig,logged=FALSE,c1=0.5,c2=1,c3=2, c2e
        xaxt = "n", 
        yaxt = "n",
        xlab = "",
-       ylab = "number of tumor cells",
+       ylab = "number of tumour cells",
        col = "black")
   axis(2, pars_fig["Ncrit"], labels = expression(paste(italic("N" [crit]))), las = 2, col = "red", col.axis = "red")
   axis(2, c(10^10, 10^11, 10^12), labels = parse(text=c("10^10", "10^11", "10^12")), las = 2)
@@ -378,7 +378,7 @@ time_cont<-function(nref,parms=pars_fig,logged=FALSE, png = FALSE){
     log<-"x"
     title <- "logged"
   }
-  par(mar = c(3, 4, 1, 1))
+  par(mar = c(3, 4, 1, 1.8))
   plot(nref_t, log=log, time_surv_cont(nref,parms),
        type="l", col="red", yaxs="i",
        #xlim=c(pars_fig["r0"], pars_fig["Ncrit"]),
@@ -391,7 +391,7 @@ time_cont<-function(nref,parms=pars_fig,logged=FALSE, png = FALSE){
   axis(1, pars_fig["Ncrit"], labels = expression(paste(italic("N" [crit]), "         ")), col = "red", col.axis = "red")
   axis(1, 10^(2*3:6), labels = parse(text=c("10^6", "10^8", "10^10", "10^12")))
   axis(2, 500*(0:5), las = 2)
-  mtext("containment size (number of tumor cells)", 1, 2, cex = 0.7)
+  mtext("containment size (number of tumour cells)", 1, 2, cex = 0.7)
   lines((nref_t),time_fail_cont(nref,parms),type="l",col="green3", lwd=2)
   lines((nref_t),time_prog_cont(nref,parms),type="l",col="blue", lwd=2)
   legend("topleft",

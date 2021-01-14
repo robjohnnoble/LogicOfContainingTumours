@@ -47,7 +47,7 @@ Figure1fgh <- function(x,cmax1,cmax2,parms = pars_fig,logged = FALSE){
   plot(x,crit_a,type="l",col="orange",
        log=log, 
        ylim=c(parms["N0"]/2,2e12), 
-       ylab = "number of tumor cells", 
+       ylab = "number of tumour cells", 
        xlab = "", 
        lwd=2, 
        xaxt = "n", 
@@ -92,7 +92,7 @@ Figure2heatmaps <- function(parms, func1, func2, length = 150, gap = 0.1, min_z 
   data_res3<-heat_fun1_fun2(length, func1, func2, parms)
   print(head(data_res3))
   xlab = expression(paste("initial frequency of resistance (", italic("R") [0], " / ", italic("N") [0], ")"))
-  ylab = expression(paste("initial number of tumor cells (", italic("N") [0], ")"))
+  ylab = expression(paste("initial number of tumour cells (", italic("N") [0], ")"))
   if(is.na(min_z)) min_z <- floor(min(data_res3$Z) / gap) * gap
   if(is.na(max_z)) max_z <- ceiling(max(data_res3$Z) / gap) * gap
   scales <- list(x=list(at = -6:-1,
@@ -175,7 +175,7 @@ figure_int_versus_contain <- function(df_list, N0) {
   plot(value ~ time, data = filter(df_M, variable == "n"), log = "y", type = "l", 
        ylim = c(5e9, 1.2e10), xlim = c(0, 350), col = "black", 
        xlab = "time (days)", 
-       ylab = expression(paste("number of tumor cells", " \u00D7 ", 10^9)), 
+       ylab = expression(paste("number of tumour cells", " \u00D7 ", 10^9)), 
        yaxt = "n")
   lines(value ~ time, data = filter(df_M, variable == "y1"), col = "blue")
   lines(value ~ time, data = filter(df_M, variable == "y2"), col = "red")

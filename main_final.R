@@ -102,7 +102,7 @@ png("Fig2g.png", width=750, height=800, res = 200)
 FigureFromSupplTable5(150)
 dev.off()
 
-pdf("Fig3ab.pdf", width=7, height=4)
+pdf("Fig3ab.pdf", width=12, height=4)
 par(mfrow = c(1, 2))
 constant_treat(c1=0.67,c2=1,c3=1.5,func=MonroGaffney,logged=TRUE, x_cex = 1)
 constant_treat(c1=0.67,c2=1,c3=1.5,func=MonroGaffney,logged=TRUE, x_cex = 1, delayed = TRUE)
@@ -198,7 +198,7 @@ dev.off()
 
 # takes a very long time!
 data_res3 <- heatmap_data(pars_fig, approx = FALSE, logZ = 2)
-pdf("FigS8.pdf", width=5.5, height=4)
+png("FigS8.png", width=3*75*7 * 0.6, height=3*75*2*3 * 0.6, res = 200)
 Figure4heatmap(data_res3)
 dev.off()
 

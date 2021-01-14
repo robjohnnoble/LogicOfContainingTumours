@@ -102,7 +102,7 @@ plot_mod_base <- function(df, labels, logged = FALSE, parms = NULL) {
        lwd = 2, 
        xaxt = "n", 
        yaxt = "n",
-       ylab = "number of tumor cells",
+       ylab = "number of tumour cells",
        col = "white")
   mtext("time (days)", 1, 2, cex = 0.7)
   abline(h = pars_fig["Ncrit"], col = "red", lty = 3)

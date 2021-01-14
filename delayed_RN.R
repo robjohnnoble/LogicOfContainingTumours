@@ -69,7 +69,7 @@ time_delayed<-function(Ndelay,Nref,parms=pars_fig){
   r1<-parms["r0"]*Ndelay/parms["N0"]
   #growth from r1 to Nref
   t2<-t1+time_from_to(r1,Nref)
-  #if we delay too late, it's the same as an untreated tumor
+  #if we delay too late, it's the same as an untreated tumour
   t2[which(Ndelay>=Nref)]<-time_from_to(parms["N0"],Nref)
   t2
 }

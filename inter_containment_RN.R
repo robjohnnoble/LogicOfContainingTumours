@@ -155,7 +155,7 @@ time_prog_one<-function(ymax,ymin,parms =pars_fig){
   }
   tx <-calc_tfailmax(ymax,ymin,ymax,parms)
   
-  #Here we treat at maximum dose until we reach Nmax and then it goes like an untreated tumor
+  #Here we treat at maximum dose until we reach Nmax and then it goes like an untreated tumour
   return(tx+time_from_to(ymax,parms["N0"]))
 }
 #same for tfail

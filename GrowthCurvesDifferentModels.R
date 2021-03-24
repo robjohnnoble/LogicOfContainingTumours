@@ -68,7 +68,7 @@ plot_three_model_curves <- function(N0, Gompertz_pars, logistic_pars, vonB_pars,
   # lines(res[,"N"] ~ res[,"time"], col = "grey", lwd = 2)
   lines(powerlaw2(power_pars["rho"], -1/3, N0, tv) ~ tv, col = "grey", lwd = 2)
   
-  legend("bottomright", legend = c("von Bertalanffy", "Gompertzian", "logisitic", "exponential", "superexponential"), 
+  legend("bottomright", legend = c("von Bertalanffy", "Gompertzian", "logistic", "exponential", "superexponential"), 
          col = c("blue", "black", "red", "gold", "grey"),
          lwd = 2, bty = "n")
   
@@ -125,11 +125,11 @@ ThreeModelsGains <- function(Gompertz_pars, logistic_pars, vonB_pars, power_pars
   mtext(expression(paste("initial frequency of resistance (", italic("R") [0], " / ", italic("N") [0], ")")), 1, 2, cex = 1)
   
   if(!anyNA(power_pars) & !anyNA(exp_pars)) {
-    legend("topright", legend = c("von Bertalanffy", "Gompertzian", "logisitic", "exponential", "superexponential"), 
+    legend("topright", legend = c("von Bertalanffy", "Gompertzian", "logistic", "exponential", "superexponential"), 
            col = c("blue", "black", "red", "gold", "grey"),
            lwd = 2, bty = "n")
   } else {
-    legend("topright", legend = c("von Bertalanffy", "Gompertzian", "logisitic"), 
+    legend("topright", legend = c("von Bertalanffy", "Gompertzian", "logistic"), 
            col = c("blue", "black", "red"),
            lwd = 2, bty = "n")
   }
